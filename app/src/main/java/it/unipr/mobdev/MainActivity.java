@@ -21,7 +21,6 @@ import androidx.core.content.ContextCompat;
  * Created by Marco Picone (picone.m@gmail.com) 20/03/2020
  * Simple Activity and application to show how to use Location Provider on Android to build
  * Location Based Service (LBS) and Applications
- * Action Buttons.
  */
 public class MainActivity extends AppCompatActivity implements LocationListener {
 
