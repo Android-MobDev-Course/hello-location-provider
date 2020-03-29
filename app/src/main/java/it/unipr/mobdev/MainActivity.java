@@ -81,8 +81,9 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
 		else if (isBetterLocation(location, currentLocation)) {
 			Log.d(TAG, "onLocationChanged(): Updating Location ... ");
 			currentLocation = location;
-			updateLocationTextView(currentLocation);
 		}
+
+		updateLocationTextView(currentLocation);
 	}
 
 	@Override
@@ -110,8 +111,13 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
 				// Acquire a reference to the system Location Manager
 				locationManager = (LocationManager) this.getSystemService(Context.LOCATION_SERVICE);
 
+				if(locationManager == null){
+					Toast.makeText(this, "Location Manager not Available !", Toast.LENGTH_LONG).show();
+					return;
+				}
+
 				if (locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
-					Log.d(TAG, "GPS_PROVIDER is ebabled !");
+					Log.d(TAG, "GPS_PROVIDER is enabled !");
 
 					Location lastKnownLocation = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
 
@@ -125,11 +131,11 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
 					locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, this);
 
 				} else
-					Toast.makeText(this, "GPS is not ebabled !", Toast.LENGTH_LONG)
+					Toast.makeText(this, "GPS is not enabled !", Toast.LENGTH_LONG)
 							.show();
 
 				if (locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER)) {
-					Log.d(TAG, "NETWORK_PROVIDER is ebabled !");
+					Log.d(TAG, "NETWORK_PROVIDER is enabled !");
 
 					Location lastKnownLocation = locationManager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
 
@@ -145,7 +151,7 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
 					// location updates
 					locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 0, 0, this);
 				} else
-					Toast.makeText(this, "LOCATION NETWORK PROVIDER is not ebabled !",
+					Toast.makeText(this, "LOCATION NETWORK PROVIDER is not enabled !",
 							Toast.LENGTH_LONG).show();
 			}else {
 				Log.e(TAG,"Location Permission Not Granted !");
