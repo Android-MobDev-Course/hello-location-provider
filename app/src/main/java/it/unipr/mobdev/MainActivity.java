@@ -101,7 +101,7 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
 		Log.d(TAG, "onProviderDisabled()");
 	}
 
-	private void localizationInfoInit(){
+	private void locationProvidersInit(){
 		try {
 
 			if(ContextCompat.checkSelfPermission(this,Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED){
@@ -281,7 +281,7 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
 		}
 		else{
 			Log.d(TAG,"checkForLocationPermissions() -> ACCESS_FINE_LOCATION GRANTED !");
-			localizationInfoInit();
+			locationProvidersInit();
 		}
 
 	}
@@ -297,7 +297,7 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
 				if (grantResults.length > 0	&& grantResults[0] == PackageManager.PERMISSION_GRANTED) {
 					Log.d(TAG,"onRequestPermissionsResult() -> Permission GRANTED !");
 					// permission was granted, yay! Do the
-					localizationInfoInit();
+					locationProvidersInit();
 				} else {
 					// permission denied, boo! Disable the functionality that depends on this permission.
 					Log.e(TAG,"onRequestPermissionsResult() -> Permission DENIED !");
